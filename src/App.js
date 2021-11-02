@@ -3,7 +3,7 @@ import Cart from "./Cart";
 import { createStore } from "redux";
 import Navbar from "./Navbar";
 import { Provider } from "react-redux";
-import { REMOVE_ITEM } from "./constants";
+import { CLEAR_CART, REMOVE_ITEM } from "./constants";
 
 const cartItems = [
   {
@@ -50,6 +50,12 @@ const reducer = (state, action) => {
       cart:state.cart.filter((eachItem)=>{
         return eachItem.id!==action.payload
       })
+    }
+  }
+  if(action.type===CLEAR_CART){
+    return{
+      ...state,
+      cart:[]
     }
   }
   return state

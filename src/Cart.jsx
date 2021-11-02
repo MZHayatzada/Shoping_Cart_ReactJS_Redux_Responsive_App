@@ -3,7 +3,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SingleCart from "./SingleCart";
 import { connect } from "react-redux";
-const Cart = ({ cart = [] }) => {
+import { clearCart } from "./actions";
+const Cart = ({ cart = [], clearCart }) => {
  
 
   return (
@@ -54,6 +55,7 @@ const Cart = ({ cart = [] }) => {
                     <button
                       type="button"
                       className="btn btn-primary btn-lg btn-block"
+                      onClick = {()=>clearCart()}
                     >
                       Clear Cart
                     </button>
@@ -70,8 +72,13 @@ const Cart = ({ cart = [] }) => {
 
 const mapStateToProps = (store)=>{
   const {cart} = store;
-
   return {cart}
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch)=>{
+    return {
+      clearCart:()=>dispatch(clearCart())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
