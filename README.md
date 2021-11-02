@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-================This App is Created with ReactJS and Redux=============
+================This App is Created with ReactJS and Redux.================
+Cridits: (UI) CSS and HTML download from https://epicbootstrap.com/snippets/shopping-cart
+functionality is add by Muhammad Zafar.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
