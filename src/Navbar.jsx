@@ -2,20 +2,21 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 import "./navCss.css";
-const Navbar = ({cart}) => {
+const Navbar = ({cart,cartQuantity}) => {
+   
   return (
     <div className="row">
       <div className="col-lg-12 col-sm-12 col-12">
         <div className="dropdown">
           <button type="button" className="btn btn-info" data-toggle="dropdown">
             <i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-            <span className="badge badge-pill badge-danger">0</span>
+            <span className="badge badge-pill badge-danger">{cartQuantity}</span>
           </button>
           <div className="dropdown-menu">
             <div className="row total-header-section">
               <div className="col-lg-6 col-sm-6 col-6">
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span className="badge badge-pill badge-danger">0</span>
+                <span className="badge badge-pill badge-danger">{cartQuantity}</span>
               </div>
               <div className="col-lg-6 col-sm-6 col-6 total-section text-right">
                 <p>
@@ -52,7 +53,13 @@ const Navbar = ({cart}) => {
 };
 const mapStateToProps = (store)=>{
     const {cart} = store;
-    return {cart}
+    const singleAmountValues = cart.map((item)=>{
+        return item.singleAmount;
+    })
+    let cartQuantity = singleAmountValues.reduce((acc,curr)=>{
+        return acc+curr;
+    },0)
+    return {cart,cartQuantity}
 }
 
 export default connect(mapStateToProps)(Navbar);

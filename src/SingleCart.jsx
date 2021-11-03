@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { removeItem } from "./actions";
+import { increaseItem, removeItem } from "./actions";
 
-const SingleCart = ({ item, increase, decrease, remove }) => {
+const SingleCart = ({ item, increase, decrease, remove, cartQuantity }) => {
   const { image, name, price, ram, storage, size, singleAmount, id } = item;
-
+    
   return (
     <div>
       <div className="product" key={id}>
@@ -45,7 +45,7 @@ const SingleCart = ({ item, increase, decrease, remove }) => {
                     <button className="btn btn-dark" onClick={() => increase()}>
                       +
                     </button>
-                    <p>0</p>
+                    <p> {singleAmount} </p>
                     <button
                       className="btn btn-dark "
                       onClick={() => decrease()}
@@ -70,7 +70,8 @@ const mapDispatchToProps = (dispatch, ownProps)=>{
     const {item} = ownProps;
     const {id} = item;
     return {
-        remove: ()=>dispatch(removeItem(id))
+        remove: ()=>dispatch(removeItem(id)),
+        increase: ()=>dispatch(increaseItem(id))
     }
 }
 

@@ -20,7 +20,7 @@ const Cart = ({ cart = [], clearCart }) => {
               <div className="row">
                 <div className="col-md-12 col-lg-8">
                   <div className="items">
-                    {cart.map((item) => {
+                  {cart.length===0 ? <h1 className='text-center'>Cart is Empty</h1>: cart.map((item) => {
                       return (
                         <SingleCart key={item.id} item={item}></SingleCart>
                       );

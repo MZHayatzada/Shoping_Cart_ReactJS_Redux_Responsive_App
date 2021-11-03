@@ -3,7 +3,7 @@ import Cart from "./Cart";
 import { createStore } from "redux";
 import Navbar from "./Navbar";
 import { Provider } from "react-redux";
-import { CLEAR_CART, REMOVE_ITEM } from "./constants";
+import { ADD_ITEM, CLEAR_CART, REMOVE_ITEM } from "./constants";
 
 const cartItems = [
   {
@@ -38,30 +38,46 @@ const cartItems = [
   },
 ];
 const initialState = {
-    cart: cartItems,
-    totalPrice: 0,
-    cartQuantity:0
+  cart: cartItems,
+  totalPrice: 0,
+  cartQuantity: 0,
 };
 
 const reducer = (state, action) => {
-  if(action.type===REMOVE_ITEM){
+  if (action.type === REMOVE_ITEM) {
     return {
       ...state,
-      cart:state.cart.filter((eachItem)=>{
-        return eachItem.id!==action.payload
-      })
-    }
+      cart: state.cart.filter((eachItem) => {
+        return eachItem.id !== action.payload;
+      }),
+    };
   }
-  if(action.type===CLEAR_CART){
-    return{
+  if (action.type === CLEAR_CART) {
+    return {
       ...state,
-      cart:[]
-    }
+      cart: [],
+    };
   }
-  return state
+  if (action.type === ADD_ITEM) {
+    let tempCart = state.cart.map((cartItem) => {
+      if (cartItem.id === action.payload) {
+        cartItem = { ...cartItem, singleAmount: cartItem.singleAmount + 1 };
+      }
+      return cartItem;
+    });
+    return {
+      ...state,
+      cart: tempCart,
+    };
+  }
+  return { ...state };
 };
 
-const store = createStore(reducer,initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(
+  reducer,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 function App() {
   return (
