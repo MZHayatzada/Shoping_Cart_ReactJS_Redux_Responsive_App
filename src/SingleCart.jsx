@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { increaseItem, removeItem } from "./actions";
+import { decreaseItem, increaseItem, removeItem } from "./actions";
 
 const SingleCart = ({ item, increase, decrease, remove, cartQuantity }) => {
   const { image, name, price, ram, storage, size, singleAmount, id } = item;
@@ -71,7 +71,8 @@ const mapDispatchToProps = (dispatch, ownProps)=>{
     const {id} = item;
     return {
         remove: ()=>dispatch(removeItem(id)),
-        increase: ()=>dispatch(increaseItem(id))
+        increase: ()=>dispatch(increaseItem(id)),
+        decrease: ()=>dispatch(decreaseItem(id)),
     }
 }
 

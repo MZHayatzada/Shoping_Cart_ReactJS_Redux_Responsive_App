@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM, CLEAR_CART } from "./constants";
+import { ADD_ITEM, REMOVE_ITEM, CLEAR_CART, DECREASE_ITEM } from "./constants";
 
 export const reducer = (state, action) => {
     if (action.type === REMOVE_ITEM) {
@@ -27,5 +27,18 @@ export const reducer = (state, action) => {
             cart: tempCart,
         };
     }
+    if (action.type === DECREASE_ITEM) {
+
+        return {
+            ...state,
+            cart: state.cart.map((item) => {
+                if (item.id === action.payload) {
+                    item = {...item, singleAmount: item.singleAmount - 1 }
+                }
+                return item
+            })
+        }
+    }
+
     return {...state };
 };

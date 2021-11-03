@@ -6,7 +6,7 @@ export const cartItems = [{
         ram: "4GB",
         storage: "32GB",
         id: 1,
-        singleAmount: 0,
+        singleAmount: 1,
     },
     {
         image: "/images/5s.jpg",
@@ -16,7 +16,7 @@ export const cartItems = [{
         ram: "6GB",
         storage: "64GB",
         id: 2,
-        singleAmount: 0,
+        singleAmount: 1,
     },
     {
         image: "/images/6s.jpg",
@@ -26,6 +26,6 @@ export const cartItems = [{
         ram: "8GB",
         storage: "128GB",
         id: 3,
-        singleAmount: 0,
+        singleAmount: 1,
     },
 ];
