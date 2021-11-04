@@ -55,7 +55,7 @@ const SingleCart = ({ item, increase, decrease, remove, cartQuantity }) => {
                   </div>
                 </div>
                 <div className="col-md-3 price">
-                  <span>$ 0 </span>
+                  <span>$ {price*singleAmount} </span>
                 </div>
               </div>
             </div>
@@ -67,12 +67,12 @@ const SingleCart = ({ item, increase, decrease, remove, cartQuantity }) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps)=>{
-    const {item} = ownProps;
+  const {item} = ownProps;
     const {id} = item;
     return {
         remove: ()=>dispatch(removeItem(id)),
         increase: ()=>dispatch(increaseItem(id)),
-        decrease: ()=>dispatch(decreaseItem(id)),
+        decrease: ()=>dispatch(decreaseItem(id,item.singleAmount)),
     }
 }
 

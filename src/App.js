@@ -11,8 +11,6 @@ const initialState = {
   cartQuantity: 0,
 };
 
-
-
 const store = createStore(
   reducer,
   initialState,

@@ -3,9 +3,14 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SingleCart from "./SingleCart";
 import { connect } from "react-redux";
-import { clearCart } from "./actions";
-const Cart = ({ cart = [], clearCart }) => {
- 
+import { clearCart,calculateTotal } from "./actions";
+
+const Cart = ({ cart = [], clearCart, calculateTotal, totalPrice=0 }) => {
+  
+  useEffect(() => {
+    calculateTotal()
+   
+  }, [cart])
 
   return (
     <div>
@@ -32,19 +37,19 @@ const Cart = ({ cart = [], clearCart }) => {
                     <h3>Summary</h3>
                     <div className="summary-item">
                       <span className="text">Subtotal</span>
-                      <span className="price">$0</span>
+                      <span className="price">${totalPrice}</span>
                     </div>
-                    <div className="summary-item">
+                    {/* <div className="summary-item">
                       <span className="text">Discount</span>
                       <span className="price">$0</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Shipping</span>
                       <span className="price">$0</span>
-                    </div>
+                    </div> */}
                     <div className="summary-item">
                       <span className="text">Total</span>
-                      <span className="price">$0</span>
+                      <span className="price">${totalPrice}</span>
                     </div>
                     <button
                       type="button"
@@ -71,13 +76,15 @@ const Cart = ({ cart = [], clearCart }) => {
 };
 
 const mapStateToProps = (store)=>{
-  const {cart} = store;
-  return {cart}
+  const {cart,totalPrice} = store;
+  console.log(store);
+  return {cart,totalPrice}
 }
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-      clearCart:()=>dispatch(clearCart())
+      clearCart:()=>dispatch(clearCart()),
+      calculateTotal : ()=>dispatch(calculateTotal())
     }
 }
 
