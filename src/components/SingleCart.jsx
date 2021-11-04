@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { decreaseItem, increaseItem, removeItem } from "./actions";
+import { decreaseItem, increaseItem, removeItem } from "../reduxStuff/actions";
 
 const SingleCart = ({ item, increase, decrease, remove, cartQuantity }) => {
   const { image, name, price, ram, storage, size, singleAmount, id } = item;

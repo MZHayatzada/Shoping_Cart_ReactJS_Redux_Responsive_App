@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SingleCart from "./SingleCart";
 import { connect } from "react-redux";
-import { clearCart,calculateTotal } from "./actions";
+import { clearCart,calculateTotal } from "../reduxStuff/actions";
 
 const Cart = ({ cart = [], clearCart, calculateTotal, totalPrice=0 }) => {
   
@@ -39,14 +39,7 @@ const Cart = ({ cart = [], clearCart, calculateTotal, totalPrice=0 }) => {
                       <span className="text">Subtotal</span>
                       <span className="price">${totalPrice}</span>
                     </div>
-                    {/* <div className="summary-item">
-                      <span className="text">Discount</span>
-                      <span className="price">$0</span>
-                    </div>
-                    <div className="summary-item">
-                      <span className="text">Shipping</span>
-                      <span className="price">$0</span>
-                    </div> */}
+            
                     <div className="summary-item">
                       <span className="text">Total</span>
                       <span className="price">${totalPrice}</span>
@@ -77,7 +70,6 @@ const Cart = ({ cart = [], clearCart, calculateTotal, totalPrice=0 }) => {
 
 const mapStateToProps = (store)=>{
   const {cart,totalPrice} = store;
-  console.log(store);
   return {cart,totalPrice}
 }
 

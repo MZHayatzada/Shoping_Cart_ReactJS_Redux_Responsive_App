@@ -1,9 +1,8 @@
-import "./App.css";
-import Cart from "./Cart";
+import Cart from "./components/Cart";
 import { createStore } from "redux";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
-import { reducer } from "./reducer";
+import { reducer } from "./reduxStuff/reducer";
 import { cartItems } from "./data";
 const initialState = {
   cart: cartItems,

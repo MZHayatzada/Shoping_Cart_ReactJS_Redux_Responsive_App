@@ -1,6 +1,7 @@
-import { ADD_ITEM, REMOVE_ITEM, CLEAR_CART, DECREASE_ITEM, TOTAL_PRICE, CALCULATE_TOTAL } from "./constants";
+import { ADD_ITEM, REMOVE_ITEM, CLEAR_CART, DECREASE_ITEM, CALCULATE_TOTAL } from "./constants";
 
 export const reducer = (state, action) => {
+
     if (action.type === REMOVE_ITEM) {
         return {
             ...state,
@@ -48,17 +49,15 @@ export const reducer = (state, action) => {
             }
         }
     }
-
     if (action.type === CALCULATE_TOTAL) {
         let totalOfEachItem = state.cart.map((cartItem) => {
-            console.log(cartItem.singleAmount * cartItem.price);
             return cartItem.singleAmount * cartItem.price;
         })
         state.totalPrice = totalOfEachItem.reduce((acc, curr) => {
             return acc + curr
         }, 0)
-        return {...state, totalPrice: state.totalPrice }
+        return {...state, totalPrice: state.totalPrice, totalOfEachItem }
     }
-
     return {...state };
+
 };

@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 import "./navCss.css";
-const Navbar = ({cart,cartQuantity}) => {
+const Navbar = ({cart,cartQuantity,totalOfEachItem}) => {
    
   return (
     <div className="row">
